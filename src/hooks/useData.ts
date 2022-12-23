@@ -11,7 +11,9 @@ export default function useData() {
   const originGeonames = ref<Array<Geoname & { percent_population: number, percent_area: number }>>([])
 
   const getData = async () => {
-    await axios.get('http://api.geonames.org/countryInfoJSON?formatted=true&username=hydrane')
+    await axios.get('/data/geonames.json', {
+      withCredentials: false
+    })
       .then(result => {
         originGeonames.value = result.data.geonames
       })
